@@ -1,35 +1,58 @@
 import React from 'react'
-import { useEffect, useState } from "react";
+import "../App.css"
 import { useHistory } from "react-router-dom";
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import CustomerCard from './CustomerCard'
 
-function CustomerContainer() {
-  const [customers, setCustomers] = useState([]);
+function CustomerContainer( {customers, setCustomers} ) {
+  // console.log(props)
+  
   const history = useHistory();
 
   const newCustomerForm = () => {
     history.push("/newcustomer")
 }
 
-  useEffect(() => {
-    fetch("http://localhost:9292/customers")
-      .then((r) => r.json())
-      .then((customers) => setCustomers(customers));
-  }, []);
-
   function handleDeleteCustomer(deletedCustomer) {
     const updatedCustomers = customers.filter((customer) => customer.id !== deletedCustomer.id);
     setCustomers(updatedCustomers);
   }
+
+  function handleUpdateCustomer(updatedCustomer) {
+    const updatedCustomers = customers.map((customer) => {
+      if (customer.id === updatedCustomer.id) {
+        return updatedCustomer;
+      } else {
+        return customer;
+      }
+    });
+    setCustomers(updatedCustomers);
+  }
+
   
 
-    const renderCustomers = customers.map(customer => (<CustomerCard key={customer.id} customer={customer} onDeleteCustomer={handleDeleteCustomer}/>))
-  return (
-    <Container>
+    // const renderCustomers = customers.map(customer => <CustomerCard key={customer.id} customer={customer} onDeleteCustomer={handleDeleteCustomer}/>)
+
+  const renderCustomers = customers.map(customer => {
+    return (
+      <Col key={customer.id} xs="auto">
+        <CustomerCard
+          setCustomers={setCustomers}
+          customer={customer}
+          onDeleteCustomer={handleDeleteCustomer} 
+          onUpdateCustomer={handleUpdateCustomer}
+        />
+      </Col>
+    )
+  })
+  
+    return (
+    <Container fluid className="p-3">
       <Button onClick={newCustomerForm}>New Customer</Button>
-      <div>{renderCustomers}</div>
+      <Row className="g-3">{renderCustomers}</Row>
     </Container>
     
   )
