@@ -1,21 +1,13 @@
 import React from 'react'
 import "../App.css"
-import { useHistory } from "react-router-dom";
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import CustomerCard from './CustomerCard'
+import NewCustomerModal from './NewCustomerModal';
 
 function CustomerContainer( {customers, setCustomers} ) {
-  // console.log(props)
-  
-  const history = useHistory();
-
-  const newCustomerForm = () => {
-    history.push("/newcustomer")
-}
-
+ 
   function handleDeleteCustomer(deletedCustomer) {
     const updatedCustomers = customers.filter((customer) => customer.id !== deletedCustomer.id);
     setCustomers(updatedCustomers);
@@ -32,9 +24,9 @@ function CustomerContainer( {customers, setCustomers} ) {
     setCustomers(updatedCustomers);
   }
 
-  
-
-    // const renderCustomers = customers.map(customer => <CustomerCard key={customer.id} customer={customer} onDeleteCustomer={handleDeleteCustomer}/>)
+  function handleNewCustomer(newCustomer) {
+    setCustomers([...customers, newCustomer])
+  }
 
   const renderCustomers = customers.map(customer => {
     return (
@@ -49,12 +41,11 @@ function CustomerContainer( {customers, setCustomers} ) {
     )
   })
   
-    return (
+  return (
     <Container fluid className="p-3">
-      <Button onClick={newCustomerForm}>New Customer</Button>
+      <NewCustomerModal onAddCustomer={handleNewCustomer} />
       <Row className="g-3">{renderCustomers}</Row>
     </Container>
-    
   )
 }
 

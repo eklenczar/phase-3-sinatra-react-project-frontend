@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
-function EditCustomerModal( {customer, onUpdateCustomer} ) {
+function NewCustomerModal( {customer, onAddCustomer} ) {
   // const { name, phone} = customer
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
@@ -14,28 +14,26 @@ function EditCustomerModal( {customer, onUpdateCustomer} ) {
   const handleNameChange = (e) => setName(e.target.value)
   const handlePhoneChange = (e) => setPhone(e.target.value)
 
-  function handleEditClick(e) {
-    e.preventDefault()
-    fetch(`http://localhost:9292/customers/${customer.id}`, {
-      method: "PATCH",
+  function handleSubmit(e) {
+    e.preventDefault();
+    fetch("http://localhost:9292/customers", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         name: name,
-        phone: phone
+        phone: phone,
+        
       }),
     })
       .then((r) => r.json())
-      .then((updatedCustomer) => onUpdateCustomer(updatedCustomer));
+      .then((newCustomer) => onAddCustomer(newCustomer));
   }
 
   return (
     <>
-      <Button onClick={handleShow}>Edit</Button>
-      {/* <Button variant="primary" onClick={handleShow}>
-        Launch static backdrop modal
-      </Button> */}
+      <Button onClick={handleShow}>New Customer</Button>
 
       <Modal
         show={show}
@@ -45,7 +43,7 @@ function EditCustomerModal( {customer, onUpdateCustomer} ) {
         
       >
         <Modal.Header closeButton>
-          <Modal.Title>Update Customer</Modal.Title>
+          <Modal.Title>New Customer</Modal.Title>
         </Modal.Header>
         <Modal.Body>
         <Form>
@@ -74,11 +72,11 @@ function EditCustomerModal( {customer, onUpdateCustomer} ) {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>Close</Button>
-          <Button variant="primary" onClick={handleEditClick}>Save Changes</Button>
+          <Button variant="primary" onClick={handleSubmit}>Add Customer</Button>
         </Modal.Footer>
       </Modal>
     </>
   );
 }
 
-export default EditCustomerModal
+export default NewCustomerModal

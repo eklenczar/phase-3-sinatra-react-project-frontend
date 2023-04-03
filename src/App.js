@@ -4,10 +4,11 @@ import Header from './components/Header'
 import Home from './components/Home'
 import CustomerContainer from './components/CustomerContainer'
 import Pies from './components/Pies'
-import NewCustomerForm from "./components/NewCustomerForm";
+import NewCustomerModal from "./components/NewCustomerModal";
 
 function App() {
   const [customers, setCustomers] = useState([]);
+  const [pies, setPies] = useState([])
 
   useEffect(() => {
     fetch("http://localhost:9292/customers")
@@ -15,17 +16,13 @@ function App() {
       .then((customers) => setCustomers(customers));
   }, []);
 
-  // function handleUpdateCustomer(updatedCustomer) {
-  //   const updatedCustomers = customers.map((customer) => {
-  //     if (customer.id === updatedCustomer.id) {
-  //       return updatedCustomer;
-  //     } else {
-  //       return customer;
-  //     }
-  //   });
-  //   setCustomers(updatedCustomers);
-  // }
+  useEffect(() => {
+    fetch("http://localhost:9292/desserts")
+      .then((r) => r.json())
+      .then((pies) => setPies(pies));
+  }, []);
 
+  
   return (
     <div className="App">
       <Header />
@@ -37,10 +34,10 @@ function App() {
           <CustomerContainer customers={customers} setCustomers={setCustomers} />
         </Route>
         <Route path="/pies">
-          <Pies />
+          <Pies pies={pies} setPies={setPies} customers={customers} />
         </Route>
         <Route path="/newcustomer">
-          <NewCustomerForm />
+          <NewCustomerModal />
         </Route>
       </Switch>
     </div>
