@@ -1,20 +1,16 @@
-import React from 'react'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import PieCard from './PieCard';
 
-function Pies( {pies, setPies, customers} ) {
-  // console.log(pies)
-
+function PieContainer( { pies, setPies } ) {
+  
 
   const renderPies = pies.map(pie => {
     return (
       <Col key={pie.id} xs="auto">
         <PieCard
-          setPies={setPies}
           pie={pie}
-          customers={customers}
         />
       </Col>
     )
@@ -22,9 +18,9 @@ function Pies( {pies, setPies, customers} ) {
   
 return (
   <Container fluid className="p-3"> 
-  <Row className="g-3">{renderPies}</Row>
-</Container>
+    <Row className="g-3">{renderPies}</Row>
+  </Container>
   )
 }
 
-export default Pies
+export default PieContainer
