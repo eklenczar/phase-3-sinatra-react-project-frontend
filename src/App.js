@@ -10,6 +10,7 @@ import NewPieForm from "./components/NewPieForm";
 function App() {
   const [customers, setCustomers] = useState([]);
   const [pies, setPies] = useState([])
+  const [soldPies, setSoldPies] = useState([])
 
   useEffect(() => {
     fetch("http://localhost:9292/customers")
@@ -21,6 +22,12 @@ function App() {
     fetch("http://localhost:9292/desserts/available")
       .then((r) => r.json())
       .then((pies) => setPies(pies));
+  }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:9292/desserts/sold")
+      .then((r) => r.json())
+      .then((soldPies) => setSoldPies(soldPies));
   }, []);
 
   
@@ -41,7 +48,7 @@ function App() {
           <NewCustomerModal />
         </Route>
         <Route path="/newpie">
-          <NewPieForm pies={pies} customers={customers} />
+          <NewPieForm pies={pies} soldPies={soldPies} setSoldPies={setSoldPies} customers={customers} />
         </Route>
       </Switch>
     </div>

@@ -1,26 +1,27 @@
-import React from 'react'
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 function NavBar() {
-    const linkStyles = {
-        display: "inline-block",
-        width: "100px",
-        padding: "12px",
-        margin: "0 6px 6px",
-        background: "blue",
-        textDecoration: "none",
-        color: "white",
-      };  
+  const linkStyles = {
+    display: "inline-block",
+    width: "100px",
+    padding: "12px",
+    margin: "0 6px 6px",
+    background: "blue",
+    textDecoration: "none",
+    color: "white",
+  };
 
   return (
     <div>
-        <NavLink
+      <NavLink
         to="/"
         exact
         style={linkStyles}
         activeStyle={{
           background: "darkblue",
-        }}>
+        }}
+      >
         Home
       </NavLink>
 
@@ -30,7 +31,8 @@ function NavBar() {
         style={linkStyles}
         activeStyle={{
           background: "darkblue",
-        }}>
+        }}
+      >
         Customers
       </NavLink>
 
@@ -40,7 +42,8 @@ function NavBar() {
         style={linkStyles}
         activeStyle={{
           background: "darkblue",
-        }}>
+        }}
+      >
         Pies
       </NavLink>
 
@@ -50,11 +53,12 @@ function NavBar() {
         style={linkStyles}
         activeStyle={{
           background: "darkblue",
-        }}>
-        New Pie
+        }}
+      >
+        Sell A Pie
       </NavLink>
     </div>
-  )
+  );
 }
 
-export default NavBar
+export default NavBar;
