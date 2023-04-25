@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
-import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 
-function NewPieForm({ pies, soldPies, setSoldPies, customers }) {
+function SellPieForm({ pies, setPies, customers, setCustomers }) {
   const [selectedPie, setSelectedPie] = useState();
-  const [selectedCustomer, setSelectedCustomer] = useState();
+  const [selectedCustomer, setSelectedCustomer] = useState({desserts: []});
 
   const customersArray = customers.map((customer) => (
     <option key={customer.id} value={customer.id}>
@@ -43,28 +42,29 @@ function NewPieForm({ pies, soldPies, setSoldPies, customers }) {
       .then((updatedPie) => handleUpdatePie(updatedPie));
   }
 
-  
+  console.log(selectedCustomer)
+  // find customer, access array of pies
+  // add the pie to customer's pie array
+  // call state setter and update customers
   function handleUpdatePie(updatedPie) {
-    console.log("soldPies", soldPies)
-    const updatedPies = soldPies.map((pie) => {
-      if (pie.id === updatedPie.id) {
-        return updatedPie;
-      } else {
-        return pie;
-      }
-    });
-    console.log("updatedPies", updatedPies)
-    setSoldPies([...soldPies, updatedPie]);
+    const customerIndex = customers.findIndex((customer) => customer.id === parseInt(selectedCustomer))
+    const pieIndex = pies.findIndex((pie) => pie.id === parseInt(selectedPie))
+    setCustomers([...customers.slice(0, customerIndex), ...customers.slice(customerIndex + 1), updatedPie.customer])
+    setPies([...pies.slice(0, pieIndex), ...pies.slice(pieIndex + 1), updatedPie.customer])
   }
 
-  const tableArray = soldPies.map((soldPie) => {
-    
-    return (
-      <tr>
-        <td>{soldPie.customer.name}</td>
-        <td>{soldPie.flavor}</td>
-      </tr>
-    );
+  const tableArray = customers.map((customer) => {
+    const flavors = customer.desserts?.map(dessert => <li key={dessert.id}>{dessert.flavor}</li>)
+    if (customer.desserts?.length > 0) {
+      return (
+        <ul>
+          <li key={customer.id}>{customer.name}</li>
+            <ul>
+              {flavors}
+            </ul>
+        </ul>
+      );
+    }
   });
 
   return (
@@ -95,17 +95,9 @@ function NewPieForm({ pies, soldPies, setSoldPies, customers }) {
         </center>
       </Container>
 
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Pie</th>
-          </tr>
-        </thead>
-        <tbody>{tableArray}</tbody>
-      </Table>
+      <div>{tableArray}</div>
     </>
   );
 }
 
-export default NewPieForm;
+export default SellPieForm;

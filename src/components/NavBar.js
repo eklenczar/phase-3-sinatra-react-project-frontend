@@ -48,7 +48,7 @@ function NavBar() {
       </NavLink>
 
       <NavLink
-        to="/newpie"
+        to="/sellpie"
         exact
         style={linkStyles}
         activeStyle={{

@@ -5,7 +5,6 @@ function PieCard({ pie }) {
   const { image, flavor, description, price } = pie;
 
   return (
-    // <div>Pie Card</div>
     <Card style={{ width: "18rem" }}>
       <Card.Img variant="top" src={image} />
       <Card.Body>

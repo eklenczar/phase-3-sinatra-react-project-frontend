@@ -8,8 +8,7 @@ import EditCustomerModal from "./EditCustomerModal";
 function CustomerCard(props) {
   const { customer, onDeleteCustomer, onUpdateCustomer } = props;
   const { id, name, phone } = customer;
-  // console.log(customer)
-
+ 
   function handleDeleteClick() {
     fetch(`http://localhost:9292/customers/${customer.id}`, {
       method: "DELETE",

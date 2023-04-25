@@ -4,7 +4,6 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 
 function EditCustomerModal({ customer, onUpdateCustomer }) {
-  // const { name, phone} = customer
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [show, setShow] = useState(false);
@@ -33,9 +32,6 @@ function EditCustomerModal({ customer, onUpdateCustomer }) {
   return (
     <>
       <Button onClick={handleShow}>Edit</Button>
-      {/* <Button variant="primary" onClick={handleShow}>
-        Launch static backdrop modal
-      </Button> */}
 
       <Modal
         show={show}
