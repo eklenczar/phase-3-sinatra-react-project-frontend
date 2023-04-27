@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 
 function SellPieForm({ pies, setPies, customers, setCustomers }) {
   const [selectedPie, setSelectedPie] = useState();
-  const [selectedCustomer, setSelectedCustomer] = useState({desserts: []});
+  const [selectedCustomer, setSelectedCustomer] = useState();
 
   const customersArray = customers.map((customer) => (
     <option key={customer.id} value={customer.id}>
@@ -40,28 +40,40 @@ function SellPieForm({ pies, setPies, customers, setCustomers }) {
     })
       .then((r) => r.json())
       .then((updatedPie) => handleUpdatePie(updatedPie));
+    selectedCustomer("");
+    selectedPie("");
   }
 
-  console.log(selectedCustomer)
+  console.log(selectedCustomer);
   // find customer, access array of pies
   // add the pie to customer's pie array
   // call state setter and update customers
   function handleUpdatePie(updatedPie) {
-    const customerIndex = customers.findIndex((customer) => customer.id === parseInt(selectedCustomer))
-    const pieIndex = pies.findIndex((pie) => pie.id === parseInt(selectedPie))
-    setCustomers([...customers.slice(0, customerIndex), ...customers.slice(customerIndex + 1), updatedPie.customer])
-    setPies([...pies.slice(0, pieIndex), ...pies.slice(pieIndex + 1), updatedPie.customer])
+    const customerIndex = customers.findIndex(
+      (customer) => customer.id === parseInt(selectedCustomer)
+    );
+    const pieIndex = pies.findIndex((pie) => pie.id === parseInt(selectedPie));
+    setCustomers([
+      ...customers.slice(0, customerIndex),
+      ...customers.slice(customerIndex + 1),
+      updatedPie.customer,
+    ]);
+    setPies([
+      ...pies.slice(0, pieIndex),
+      ...pies.slice(pieIndex + 1),
+      updatedPie.customer,
+    ]);
   }
 
   const tableArray = customers.map((customer) => {
-    const flavors = customer.desserts?.map(dessert => <li key={dessert.id}>{dessert.flavor}</li>)
+    const flavors = customer.desserts?.map((dessert) => (
+      <li key={dessert.id}>{dessert.flavor}</li>
+    ));
     if (customer.desserts?.length > 0) {
       return (
         <ul>
           <li key={customer.id}>{customer.name}</li>
-            <ul>
-              {flavors}
-            </ul>
+          <ul>{flavors}</ul>
         </ul>
       );
     }

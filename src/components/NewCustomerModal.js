@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 
-function NewCustomerModal({ customer, onAddCustomer }) {
+function NewCustomerModal({ onAddCustomer }) {
   // const { name, phone} = customer
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -28,6 +28,8 @@ function NewCustomerModal({ customer, onAddCustomer }) {
     })
       .then((r) => r.json())
       .then((newCustomer) => onAddCustomer(newCustomer));
+      setName("");
+      setPhone("");
   }
 
   return (

@@ -4,9 +4,9 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 
 function NewPieModal( {onAddPie} ) {
-  const [flavor, setFlavor] = useState();
+  const [flavor, setFlavor] = useState("");
 //   const [image, setImage] = useState()
-  const [description, setDescription] = useState()
+  const [description, setDescription] = useState("")
   const [price, setPrice] = useState()
   const [show, setShow] = useState(false);
   
@@ -32,6 +32,9 @@ function NewPieModal( {onAddPie} ) {
     })
       .then((r) => r.json())
       .then((newPie) => onAddPie(newPie));
+      setFlavor("");
+      setDescription("");
+      setPrice("");
   }
 
   return (
