@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+# Phase 3 Project - Pie Company
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Backend Link](https://github.com/eklenczar/phase-3-sinatra-react-project)
 
-## Available Scripts
+To get started run npm install and then npm start.
 
-In the project directory, you can run:
+## The User
+I imagined the user for this app to be an employee at The Pie Company taking an order from a customer.
 
-### `npm start`
+### The App
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The Pie Company app works by storing a list of available pies, current customers, and assigning pies to the customers they've been sold to.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Home
+The app has a home page that has updates and reminders for employees that are taking special orders.
 
-### `npm test`
+### Customers
+The customers page allows you to read the current customers, create a new customer using the New Customer button, delete a customer, and edit a customer.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Pies
+The pies page has image cards with a brief description of the pies currently in inventory as well as their price.
 
-### `npm run build`
+### Sell A Pie
+This page allows you to select a customer and a pie via dropdown buttons and transfer an available pie to a customer using the Submit button. There is also a list of currently sold pies as well as the id's of the customers who now own them.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Pictures and descriptions taken from [The Grand Traverse Pie Company](https://gtpie.com/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
